@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="DNEGEL3125">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://DNEGEL3125.github.io/2025/03/12/为什么需要工厂模式？/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么需要工厂模式？">
+<meta property="og:url" content="https://dnegel3125.github.io/2025/03/12/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%EF%BC%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://dnegel3125.github.io/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-03-11T16:45:18.000Z">
+<meta property="article:modified_time" content="2025-03-12T03:36:24.339Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dnegel3125.github.io/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/CatchTheChess-round.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/CatchTheChess-round.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/CatchTheChess-round.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            为什么需要工厂模式？ | DNEGEL3125&#39;s blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"dnegel3125.github.io","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DNEGEL3125's blog","subtitle":{"text":["为了记录所学而写的笔记。","Notes written to keep track of what has been learned. "],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                DNEGEL3125&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">为什么需要工厂模式？</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/CatchTheChess.pic.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">DNEGEL3125</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-03-12 00:45:18</span>
+        <span class="mobile">2025-03-12 00:45:18</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-03-12 11:36:24</span>
+            <span class="mobile">2025-03-12 11:36:24</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>想象一下你是一家玩具车组装厂的老板。你的工厂要生产各种各样的玩具车，比如：</p>
+<ul>
+<li><strong>跑车 (SportsCar):</strong>  速度快，造型酷炫</li>
+<li><strong>越野车 (OffRoadCar):</strong>  坚固耐用，适合崎岖地形</li>
+<li><strong>卡车 (Truck):</strong>  载重能力强，适合运输货物</li>
+</ul>
+<p><strong>没有工厂模式的 “组装” 方式：</strong></p>
+<p>如果你的工厂没有使用工厂模式，那么每当客户想要一辆特定的玩具车时，你的组装工人（程序代码）就需要直接去组装。  例如，客户想要一辆跑车，工人就需要知道跑车的具体组装流程：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToyCarAssembler</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 客户想要跑车</span></span><br><span class="line">        <span class="type">SportsCar</span> <span class="variable">sportsCar</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SportsCar</span>();</span><br><span class="line">        sportsCar.assembleEngine(); <span class="comment">// 组装引擎</span></span><br><span class="line">        sportsCar.assembleBody();   <span class="comment">// 组装车身</span></span><br><span class="line">        sportsCar.assembleWheels(); <span class="comment">// 组装轮胎</span></span><br><span class="line">        sportsCar.paint(<span class="string">&quot;红色&quot;</span>);     <span class="comment">// 喷漆</span></span><br><span class="line">        System.out.println(<span class="string">&quot;组装完成：跑车&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 客户想要越野车</span></span><br><span class="line">        <span class="type">OffRoadCar</span> <span class="variable">offRoadCar</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OffRoadCar</span>();</span><br><span class="line">        offRoadCar.assembleEngine(); <span class="comment">// 组装引擎 (不同类型的引擎)</span></span><br><span class="line">        offRoadCar.assembleBody();   <span class="comment">// 组装车身 (更坚固的车身)</span></span><br><span class="line">        offRoadCar.assembleWheels(); <span class="comment">// 组装轮胎 (越野轮胎)</span></span><br><span class="line">        offRoadCar.paint(<span class="string">&quot;绿色&quot;</span>);     <span class="comment">// 喷漆</span></span><br><span class="line">        System.out.println(<span class="string">&quot;组装完成：越野车&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ... 如果要卡车，又要重复类似的组装流程 ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>问题：</strong></p>
+<ol>
+<li><strong>代码重复：</strong>  组装每种类型的车，都需要重复编写类似的组装步骤 (<code>assembleEngine</code>, <code>assembleBody</code>, <code>assembleWheels</code>, <code>paint</code>)，只是具体实现可能略有不同。</li>
+<li><strong>硬编码：</strong>  创建具体玩具车类型的代码 (<code>new SportsCar()</code>, <code>new OffRoadCar()</code>)  直接写死在 <code>ToyCarAssembler</code> 中。 如果要新增一种玩具车 (比如 <code>豪华轿车</code>)，就需要修改 <code>ToyCarAssembler</code> 的代码。</li>
+<li><strong>耦合性高：</strong> <code>ToyCarAssembler</code> 类直接依赖于 <code>SportsCar</code>, <code>OffRoadCar</code> 等具体玩具车类，修改任何一个玩具车类的实现都可能影响 <code>ToyCarAssembler</code>。</li>
+<li><strong>扩展性差：</strong>  增加新的玩具车类型很麻烦，需要修改 <code>ToyCarAssembler</code> 的代码，违反了 “开闭原则” (对扩展开放，对修改关闭)。</li>
+</ol>
+<p><strong>引入工厂模式的 “组装” 方式：</strong></p>
+<p>为了解决上述问题，我们可以引入 “玩具车工厂”。 工厂负责创建各种玩具车，而组装工人（<code>ToyCarAssembler</code>）只需要告诉工厂 <em>想要什么类型的车</em>，工厂就负责生产出来。</p>
+<p><strong>工厂模式的核心思想：</strong>  将对象的 <em>创建</em>  和 <em>使用</em>  分离。 将创建对象的职责交给专门的 “工厂” 类。</p>
+<p><strong>三种工厂模式及其应用场景：</strong></p>
+<p>现在我们来分别用玩具车工厂的例子，讲解三种工厂模式：</p>
+<p><strong>1. 简单工厂模式 (Simple Factory)</strong></p>
+<ul>
+<li><p><strong>概念：</strong>  一个工厂类 (比如 <code>SimpleToyCarFactory</code>)  包含一个静态方法 (或非静态方法)，根据客户端提供的参数 (比如玩具车类型字符串) 来创建并返回不同类型的玩具车对象。</p>
+</li>
+<li><p><strong>玩具车工厂例子：</strong></p>
+</li>
+</ul>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 玩具车接口</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ToyCar</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">assembleEngine</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">assembleBody</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">assembleWheels</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(String color)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体玩具车类 (跑车, 越野车, 卡车)  (代码省略，和上面例子相同)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 简单玩具车工厂</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleToyCarFactory</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> ToyCar <span class="title function_">createToyCar</span><span class="params">(String type)</span> &#123;</span><br><span class="line">        <span class="type">ToyCar</span> <span class="variable">car</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;Sports&quot;</span>.equalsIgnoreCase(type)) &#123;</span><br><span class="line">            car = <span class="keyword">new</span> <span class="title class_">SportsCar</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">&quot;OffRoad&quot;</span>.equalsIgnoreCase(type)) &#123;</span><br><span class="line">            car = <span class="keyword">new</span> <span class="title class_">OffRoadCar</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">&quot;Truck&quot;</span>.equalsIgnoreCase(type)) &#123;</span><br><span class="line">            car = <span class="keyword">new</span> <span class="title class_">Truck</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> car;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 组装工人代码 (简化)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToyCarAssembler</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 客户想要跑车，告诉工厂</span></span><br><span class="line">        <span class="type">ToyCar</span> <span class="variable">sportsCar</span> <span class="operator">=</span> SimpleToyCarFactory.createToyCar(<span class="string">&quot;Sports&quot;</span>);</span><br><span class="line">        sportsCar.assembleEngine();</span><br><span class="line">        sportsCar.assembleBody();</span><br><span class="line">        sportsCar.assembleWheels();</span><br><span class="line">        sportsCar.paint(<span class="string">&quot;红色&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;组装完成：跑车&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 客户想要越野车，告诉工厂</span></span><br><span class="line">        <span class="type">ToyCar</span> <span class="variable">offRoadCar</span> <span class="operator">=</span> SimpleToyCarFactory.createToyCar(<span class="string">&quot;OffRoad&quot;</span>);</span><br><span class="line">        offRoadCar.assembleEngine();</span><br><span class="line">        offRoadCar.assembleBody();</span><br><span class="line">        offRoadCar.assembleWheels();</span><br><span class="line">        offRoadCar.paint(<span class="string">&quot;绿色&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;组装完成：越野车&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p><strong>优点：</strong></p>
+<ul>
+<li><strong>封装了对象创建逻辑：</strong>  客户端代码不再需要知道具体玩具车类的创建细节，只需要跟工厂打交道。</li>
+<li><strong>集中管理对象创建：</strong> 所有玩具车的创建都集中在 <code>SimpleToyCarFactory</code> 中，易于维护和管理。</li>
+<li><strong>降低耦合：</strong> <code>ToyCarAssembler</code> 不再直接依赖于具体的玩具车类，只依赖于 <code>ToyCar</code> 接口和 <code>SimpleToyCarFactory</code>。</li>
+</ul>
+</li>
+<li><p><strong>缺点：</strong></p>
+<ul>
+<li><strong>违反开闭原则：</strong>  如果要新增一种玩具车类型 (例如 <code>豪华轿车</code>)，需要修改 <code>SimpleToyCarFactory</code> 的 <code>createToyCar</code> 方法，添加新的 <code>if-else</code> 分支。 工厂类的职责过重，变成了 “万能工厂”。</li>
+</ul>
+</li>
+<li><p><strong>应用场景：</strong></p>
+<ul>
+<li><strong>工厂类只负责创建少数几种相关的对象：</strong>  对象类型不多，变化频率不高。</li>
+<li><strong>客户端只需要知道传入工厂的参数即可创建对象，不需要知道具体的创建过程。</strong></li>
+<li><strong>例如：</strong><ul>
+<li><strong>日志记录器工厂:</strong>  根据日志级别 (debug, info, error) 创建不同的日志记录器对象。</li>
+<li><strong>支付方式工厂:</strong>  根据支付类型 (支付宝, 微信, 银行卡) 创建不同的支付方式对象。</li>
+<li><strong>UI组件工厂:</strong>  根据组件类型 (按钮, 文本框, 标签) 创建不同的 UI 组件对象。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. 工厂方法模式 (Factory Method)</strong></p>
+<ul>
+<li><p><strong>概念：</strong>  定义一个工厂接口 (或抽象类) <code>ToyCarFactory</code>，声明一个抽象的工厂方法 <code>createToyCar()</code>.  每个具体的玩具车类型 (或类型族)  都有一个具体的工厂类 (例如 <code>SportsCarFactory</code>, <code>OffRoadCarFactory</code>)，负责实现 <code>createToyCar()</code> 方法来创建对应类型的玩具车。</p>
+</li>
+<li><p><strong>玩具车工厂例子：</strong></p>
+</li>
+</ul>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 玩具车接口 (不变)</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ToyCar</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体玩具车类 (跑车, 越野车, 卡车) (不变)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象玩具车工厂接口</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ToyCarFactory</span> &#123;</span><br><span class="line">    ToyCar <span class="title function_">createToyCar</span><span class="params">()</span>; <span class="comment">// 工厂方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体工厂类：跑车工厂</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SportsCarFactory</span> <span class="keyword">implements</span> <span class="title class_">ToyCarFactory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ToyCar <span class="title function_">createToyCar</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SportsCar</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体工厂类：越野车工厂</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OffRoadCarFactory</span> <span class="keyword">implements</span> <span class="title class_">ToyCarFactory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ToyCar <span class="title function_">createToyCar</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">OffRoadCar</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体工厂类：卡车工厂</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TruckFactory</span> <span class="keyword">implements</span> <span class="title class_">ToyCarFactory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ToyCar <span class="title function_">createToyCar</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Truck</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 组装工人代码</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToyCarAssembler</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 需要跑车，使用跑车工厂</span></span><br><span class="line">        <span class="type">ToyCarFactory</span> <span class="variable">sportsCarFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SportsCarFactory</span>();</span><br><span class="line">        <span class="type">ToyCar</span> <span class="variable">sportsCar</span> <span class="operator">=</span> sportsCarFactory.createToyCar();</span><br><span class="line">        sportsCar.assembleEngine();</span><br><span class="line">        sportsCar.assembleBody();</span><br><span class="line">        sportsCar.assembleWheels();</span><br><span class="line">        sportsCar.paint(<span class="string">&quot;红色&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;组装完成：跑车&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 需要越野车，使用越野车工厂</span></span><br><span class="line">        <span class="type">ToyCarFactory</span> <span class="variable">offRoadCarFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OffRoadCarFactory</span>();</span><br><span class="line">        <span class="type">ToyCar</span> <span class="variable">offRoadCar</span> <span class="operator">=</span> offRoadCarFactory.createToyCar();</span><br><span class="line">        offRoadCar.assembleEngine();</span><br><span class="line">        offRoadCar.assembleBody();</span><br><span class="line">        offRoadCar.assembleWheels();</span><br><span class="line">        offRoadCar.paint(<span class="string">&quot;绿色&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;组装完成：越野车&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p><strong>优点：</strong></p>
+<ul>
+<li><strong>符合开闭原则：</strong>  如果要新增一种玩具车类型 (例如 <code>豪华轿车</code>)，只需要新增一个 <code>LuxuryCarFactory</code> 工厂类，实现 <code>ToyCarFactory</code> 接口，而不需要修改已有的工厂类或客户端代码。</li>
+<li><strong>更灵活的创建逻辑：</strong> 每个具体工厂可以有自己的创建逻辑，可以根据需要定制化对象的创建过程。</li>
+<li><strong>更好的扩展性：</strong>  易于扩展新的产品类型。</li>
+</ul>
+</li>
+<li><p><strong>缺点：</strong></p>
+<ul>
+<li><strong>类数量增加：</strong>  每种产品类型都需要一个对应的工厂类，导致类数量增加。</li>
+<li><strong>客户端需要选择具体的工厂：</strong> 客户端代码需要知道要使用哪个具体的工厂类。</li>
+</ul>
+</li>
+<li><p><strong>应用场景：</strong></p>
+<ul>
+<li><strong>当创建对象的逻辑比较复杂，需要更灵活的创建过程时。</strong></li>
+<li><strong>当需要支持不断扩展新的产品类型时。</strong></li>
+<li><strong>当需要由子类决定创建哪个对象时 (工厂方法通常是抽象方法，由子类实现)。</strong></li>
+<li><strong>例如：</strong><ul>
+<li><strong>图形库中的形状工厂:</strong>  每个形状 (圆形, 矩形, 三角形) 都有各自的工厂类来创建，可以定制化形状的创建参数。</li>
+<li><strong>数据库连接工厂:</strong>  不同的数据库 (MySQL, PostgreSQL, Oracle)  有不同的连接工厂，负责创建特定数据库的连接对象。</li>
+<li><strong>操作系统平台相关的组件工厂:</strong>  不同的操作系统 (Windows, macOS, Linux)  有不同的 UI 组件工厂，负责创建平台特定的 UI 组件。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. 抽象工厂模式 (Abstract Factory)</strong></p>
+<ul>
+<li><p><strong>概念：</strong>  当需要创建 <em>一组</em>  相关的对象 (产品族)  时，可以使用抽象工厂模式。  抽象工厂接口 (或抽象类)  定义了一组创建相关产品的方法。  每个具体的工厂类负责创建 <em>一整套</em>  相关的产品。</p>
+</li>
+<li><p><strong>玩具车工厂例子：</strong></p>
+<p>假设我们不仅要生产玩具车，还要生产玩具车的 <em>零件</em>，例如：</p>
+<ul>
+<li><strong>引擎 (Engine):</strong> 分为高性能引擎和普通引擎</li>
+<li><strong>车身 (Body):</strong> 分为运动型车身和越野型车身</li>
+<li><strong>轮胎 (Wheels):</strong> 分为跑车轮胎和越野轮胎</li>
+</ul>
+<p>现在，我们希望创建不同 <em>风格</em>  的玩具车，例如 “运动风格” 和 “越野风格”。  运动风格的玩具车应该使用高性能引擎、运动型车身和跑车轮胎。 越野风格的玩具车应该使用普通引擎、越野型车身和越野轮胎。</p>
+<p>抽象工厂模式可以解决这个问题。</p>
+</li>
+</ul>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引擎接口</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Engine</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">work</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 具体引擎类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HighPerformanceEngine</span> <span class="keyword">implements</span> <span class="title class_">Engine</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NormalEngine</span> <span class="keyword">implements</span> <span class="title class_">Engine</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 车身接口</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Body</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">assemble</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 具体车身类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SportsBody</span> <span class="keyword">implements</span> <span class="title class_">Body</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OffRoadBody</span> <span class="keyword">implements</span> <span class="title class_">Body</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 轮胎接口</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Wheels</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">roll</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 具体轮胎类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SportsWheels</span> <span class="keyword">implements</span> <span class="title class_">Wheels</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OffRoadWheels</span> <span class="keyword">implements</span> <span class="title class_">Wheels</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象工厂接口：玩具零件工厂</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ToyPartsFactory</span> &#123;</span><br><span class="line">    Engine <span class="title function_">createEngine</span><span class="params">()</span>;</span><br><span class="line">    Body <span class="title function_">createBody</span><span class="params">()</span>;</span><br><span class="line">    Wheels <span class="title function_">createWheels</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体工厂类：运动风格玩具零件工厂</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SportsToyPartsFactory</span> <span class="keyword">implements</span> <span class="title class_">ToyPartsFactory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Engine <span class="title function_">createEngine</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">HighPerformanceEngine</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Body <span class="title function_">createBody</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SportsBody</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Wheels <span class="title function_">createWheels</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SportsWheels</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体工厂类：越野风格玩具零件工厂</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OffRoadToyPartsFactory</span> <span class="keyword">implements</span> <span class="title class_">ToyPartsFactory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Engine <span class="title function_">createEngine</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">NormalEngine</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Body <span class="title function_">createBody</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">OffRoadBody</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Wheels <span class="title function_">createWheels</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">OffRoadWheels</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 玩具车类 (修改，使用零件工厂)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SportsCar</span> <span class="keyword">implements</span> <span class="title class_">ToyCar</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Engine engine;</span><br><span class="line">    <span class="keyword">private</span> Body body;</span><br><span class="line">    <span class="keyword">private</span> Wheels wheels;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SportsCar</span><span class="params">(ToyPartsFactory factory)</span> &#123; <span class="comment">// 构造函数传入零件工厂</span></span><br><span class="line">        <span class="built_in">this</span>.engine = factory.createEngine();</span><br><span class="line">        <span class="built_in">this</span>.body = factory.createBody();</span><br><span class="line">        <span class="built_in">this</span>.wheels = factory.createWheels();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">assembleEngine</span><span class="params">()</span> &#123; engine.work(); System.out.println(<span class="string">&quot;组装跑车引擎&quot;</span>); &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">assembleBody</span><span class="params">()</span> &#123; body.assemble(); System.out.println(<span class="string">&quot;组装跑车车身&quot;</span>); &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">assembleWheels</span><span class="params">()</span> &#123; wheels.roll(); System.out.println(<span class="string">&quot;组装跑车轮胎&quot;</span>); &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(String color)</span> &#123; System.out.println(<span class="string">&quot;跑车喷漆:&quot;</span> + color); &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OffRoadCar</span> <span class="keyword">implements</span> <span class="title class_">ToyCar</span> &#123;</span><br><span class="line">    <span class="comment">// ...  类似 SportsCar，但在构造函数中使用不同的零件工厂</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">OffRoadCar</span><span class="params">(ToyPartsFactory factory)</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Truck</span> <span class="keyword">implements</span> <span class="title class_">ToyCar</span> &#123;</span><br><span class="line">    <span class="comment">// ... 可以选择使用哪种零件工厂，或者创建新的零件工厂</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Truck</span><span class="params">(ToyPartsFactory factory)</span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 组装工人代码</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToyCarAssembler</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建运动风格的玩具车</span></span><br><span class="line">        <span class="type">ToyPartsFactory</span> <span class="variable">sportsPartsFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SportsToyPartsFactory</span>();</span><br><span class="line">        <span class="type">ToyCar</span> <span class="variable">sportsCar</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SportsCar</span>(sportsPartsFactory); <span class="comment">// 将零件工厂传入玩具车构造函数</span></span><br><span class="line">        sportsCar.assembleEngine();</span><br><span class="line">        sportsCar.assembleBody();</span><br><span class="line">        sportsCar.assembleWheels();</span><br><span class="line">        sportsCar.paint(<span class="string">&quot;红色&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;组装完成：运动跑车&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建越野风格的玩具车</span></span><br><span class="line">        <span class="type">ToyPartsFactory</span> <span class="variable">offRoadPartsFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OffRoadToyPartsFactory</span>();</span><br><span class="line">        <span class="type">ToyCar</span> <span class="variable">offRoadCar</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OffRoadCar</span>(offRoadPartsFactory); <span class="comment">// 将零件工厂传入玩具车构造函数</span></span><br><span class="line">        offRoadCar.assembleEngine();</span><br><span class="line">        offRoadCar.assembleBody();</span><br><span class="line">        offRoadCar.assembleWheels();</span><br><span class="line">        offRoadCar.paint(<span class="string">&quot;绿色&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;组装完成：越野越野车&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p><strong>优点：</strong></p>
+<ul>
+<li><strong>创建产品族：</strong>  可以保证创建出来的产品属于同一个产品族，具有一致性。 例如，运动风格的玩具车的所有零件都是运动风格的。</li>
+<li><strong>易于切换产品族：</strong>  只需要更换不同的具体工厂，就可以切换到不同的产品族。 例如，从 <code>SportsToyPartsFactory</code> 切换到 <code>OffRoadToyPartsFactory</code>。</li>
+<li><strong>隔离了具体产品的实现：</strong>  客户端代码不依赖于具体的产品类，只依赖于抽象工厂和抽象产品接口。</li>
+</ul>
+</li>
+<li><p><strong>缺点：</strong></p>
+<ul>
+<li><strong>难以扩展新的产品线：</strong>  如果要新增一个产品线 (例如，除了引擎、车身、轮胎，还要增加 “车窗”)，需要修改抽象工厂接口 <code>ToyPartsFactory</code> 和所有的具体工厂类，比较麻烦。</li>
+</ul>
+</li>
+<li><p><strong>应用场景：</strong></p>
+<ul>
+<li><strong>当需要创建一组相关或相互依赖的对象，并且这些对象构成一个产品族时。</strong></li>
+<li><strong>当需要在不同的产品族之间切换时。</strong></li>
+<li><strong>当需要保证产品族中对象的一致性时。</strong></li>
+<li><strong>例如：</strong><ul>
+<li><strong>UI 框架中的主题&#x2F;风格切换：</strong>  不同的主题 (浅色主题、深色主题) 需要创建一套相关的 UI 组件 (按钮、文本框、菜单)，抽象工厂可以用于创建不同主题风格的 UI 组件。</li>
+<li><strong>跨平台应用开发：</strong>  不同的操作系统 (Windows, macOS, iOS, Android)  有不同的 UI 组件和 API，抽象工厂可以用于创建平台相关的组件和 API 接口，实现跨平台兼容。</li>
+<li><strong>游戏中的不同风格的美术资源：</strong>  不同的游戏风格 (科幻风格、魔幻风格、卡通风格) 需要创建一套相关的角色模型、场景模型、特效资源，抽象工厂可以用于创建不同风格的美术资源。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>总结：</strong></p>
+<ul>
+<li><p><strong>简单工厂模式：</strong>  最简单的工厂模式，适用于创建对象类型不多，创建逻辑简单的场景。 主要优点是封装创建逻辑，降低耦合。 主要缺点是违反开闭原则，扩展性较差。</p>
+</li>
+<li><p><strong>工厂方法模式：</strong>  更灵活的工厂模式，适用于创建对象类型较多，创建逻辑复杂，需要扩展新的产品类型的场景。 主要优点是符合开闭原则，扩展性好。 主要缺点是类数量增加。</p>
+</li>
+<li><p><strong>抽象工厂模式：</strong>  更高级的工厂模式，适用于创建产品族，需要切换产品族的场景。 主要优点是创建产品族，易于切换产品族，保证产品族一致性。 主要缺点是难以扩展新的产品线。</p>
+</li>
+</ul>
+<p>选择哪种工厂模式取决于具体的应用场景和需求。 通常情况下，可以从简单工厂模式开始，如果需要更好的扩展性或更复杂的产品创建逻辑，再考虑工厂方法模式或抽象工厂模式。</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 为什么需要工厂模式？</li>
+        <li><strong>Author:</strong> DNEGEL3125</li>
+        <li><strong>Created at
+                :</strong> 2025-03-12 00:45:18</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-03-12 11:36:24
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://github.com/DNEGEL3125/DNEGEL3125.github.io/2025/03/12/为什么需要工厂模式？/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">#设计模式</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/03/11/%E5%9C%A81v1%E6%B8%B8%E6%88%8F%E4%B8%AD%E5%AE%9E%E7%8E%B0Elo%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">在1v1游戏中实现Elo匹配算法</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">为什么需要工厂模式？</div>
+		
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">DNEGEL3125</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        3 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
