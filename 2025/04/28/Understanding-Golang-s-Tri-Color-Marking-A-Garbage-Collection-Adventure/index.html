@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://DNEGEL3125.github.io/2025/03/15/如何理解-go-语言的-select-语句/"/>
+    <link rel="canonical" href="https://DNEGEL3125.github.io/2025/04/28/understanding-golang-s-tri-color-marking-a-garbage-collection-adventure/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -23,16 +23,17 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何理解 Go 语言的 select 语句">
-<meta property="og:url" content="https://dnegel3125.github.io/2025/03/15/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3-Go-%E8%AF%AD%E8%A8%80%E7%9A%84-select-%E8%AF%AD%E5%8F%A5/index.html">
+<meta property="og:title" content="Understanding Golang&#39;s Tri-Color Marking: A Garbage Collection Adventure">
+<meta property="og:url" content="https://dnegel3125.github.io/2025/04/28/Understanding-Golang-s-Tri-Color-Marking-A-Garbage-Collection-Adventure/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://dnegel3125.github.io/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-03-15T06:56:56.000Z">
-<meta property="article:modified_time" content="2025-03-15T07:05:27.655Z">
+<meta property="article:published_time" content="2025-04-27T16:46:30.000Z">
+<meta property="article:modified_time" content="2025-04-27T16:58:20.446Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Go">
+<meta property="article:tag" content="GC">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://dnegel3125.github.io/images/redefine-og.webp">
     
@@ -46,7 +47,7 @@
     
     <title>
         
-            如何理解 Go 语言的 select 语句 | DNEGEL3125&#39;s blog
+            Understanding Golang&#39;s Tri-Color Marking: A Garbage Collection Adventure | DNEGEL3125&#39;s blog
         
     </title>
 
@@ -235,7 +236,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">如何理解 Go 语言的 select 语句</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Understanding Golang&#39;s Tri-Color Marking: A Garbage Collection Adventure</h1>
 			</div>
 			
 		</div>
@@ -256,15 +257,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-03-15 14:56:56</span>
-        <span class="mobile">2025-03-15 14:56:56</span>
+        <span class="desktop">2025-04-28 00:46:30</span>
+        <span class="mobile">2025-04-28 00:46:30</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-03-15 15:05:27</span>
-            <span class="mobile">2025-03-15 15:05:27</span>
+            <span class="desktop">2025-04-28 00:58:20</span>
+            <span class="mobile">2025-04-28 00:58:20</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -277,6 +278,10 @@
                 
                     <li>
                         <a href="/tags/Go/">Go</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/GC/">GC</a>&nbsp;
                     </li>
                 
             </ul>
@@ -302,10 +307,66 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>Go 语言中的 select 语句有点类似于事件监听机制，但具体实现和行为有所不同。它允许程序等待多个通信操作（如发送或接收数据）中的任意一个准备好，并根据哪个操作首先准备好来执行相应的操作。</p>
-<h2 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h2><p><code>select</code> 语句可以多路复用多个 channel 的通信操作。这意味着它可以同时等待多个 channel 的读取、写入或接收操作。一旦其中一个操作准备好，就选择该操作进行处理。</p>
-<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><p>假设有 <code>ch1</code> 和 <code>ch2</code> 两个 channel：</p>
-<div class="code-container" data-rel="Go"><figure class="iseeu highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> &#123;</span><br><span class="line">    <span class="comment">// 从 ch1 接收数据，如果 ch1 已准备好（有数据可读），则执行此分支</span></span><br><span class="line">    <span class="keyword">case</span> msg := &lt;-ch1:</span><br><span class="line">        fmt.Println(<span class="string">&quot;Received from ch1:&quot;</span>, msg)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 向 ch2 发送数据 &quot;send&quot;，如果 ch2 已准备好（有可用缓冲区或有接收者），则执行此分支</span></span><br><span class="line">    <span class="keyword">case</span> ch2 &lt;- <span class="string">&quot;send&quot;</span>:</span><br><span class="line">        fmt.Println(<span class="string">&quot;Sent to ch2&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 设置 1 秒超时，如果上述两个操作在 1 秒内都未就绪，则执行此分支</span></span><br><span class="line">    <span class="keyword">case</span> &lt;-time.After(<span class="number">1</span> * time.Second):</span><br><span class="line">        fmt.Println(<span class="string">&quot;Timeout&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+			<p>Picture this: You’re at a party with hundreds of guests. Some are actively mingling (your running program), while others have passed out in corners (your unused memory). Your job as the host? Figure out who’s still partying and who needs a ride home—without stopping the party. This, my friends, is essentially what garbage collection in Go does, and tri-color marking is its ingenious guest-management system.</p>
+<h2 id="The-Memory-Management-Party-Problem"><a href="#The-Memory-Management-Party-Problem" class="headerlink" title="The Memory Management Party Problem"></a>The Memory Management Party Problem</h2><p>In the world of programming, memory management is like planning the perfect party. You need to:</p>
+<ol>
+<li>Invite the right guests (allocate memory)</li>
+<li>Make sure they have a good time (use the memory)</li>
+<li>Know when they’ve left so you can reclaim their spots (free memory)</li>
+</ol>
+<p>In languages like C, you’re the micromanaging host who personally escorts each guest in and out. But Go, like Java and others, employs a “garbage collector” – essentially a cleanup crew that identifies and removes unused memory while your program runs.</p>
+<h2 id="Enter-the-Tri-Color-Algorithm-Memory-Management-with-Crayons"><a href="#Enter-the-Tri-Color-Algorithm-Memory-Management-with-Crayons" class="headerlink" title="Enter the Tri-Color Algorithm: Memory Management with Crayons"></a>Enter the Tri-Color Algorithm: Memory Management with Crayons</h2><p>Go’s garbage collector uses a clever approach called “tri-color marking.” Imagine the garbage collector has three magical markers:</p>
+<ul>
+<li><strong>White marker</strong>: “I haven’t checked this memory yet, it might be garbage”</li>
+<li><strong>Gray marker</strong>: “I’ve seen this memory, but haven’t checked what it references”</li>
+<li><strong>Black marker</strong>: “This memory is definitely in use, and I’ve checked everything it references”</li>
+</ul>
+<p>When garbage collection begins, every object in memory gets marked white (potentially garbage). Then the garbage collector looks at your “roots” – variables your program can directly access – and marks them gray.</p>
+<h2 id="The-Coloring-Party"><a href="#The-Coloring-Party" class="headerlink" title="The Coloring Party"></a>The Coloring Party</h2><p>Here’s where the fun begins. The garbage collector grabs each gray object and does two things:</p>
+<ol>
+<li>Marks it black (definitely in use)</li>
+<li>Marks all the objects it references gray (needs checking)</li>
+</ol>
+<p>This process continues until no gray objects remain. At that point, anything still white must be unreachable garbage that can be safely removed.</p>
+<h2 id="Why-is-this-Brilliant"><a href="#Why-is-this-Brilliant" class="headerlink" title="Why is this Brilliant?"></a>Why is this Brilliant?</h2><p>Imagine a traditional approach where we’d have to stop the entire program (freeze the party) while checking memory. That’s what we call a “stop-the-world” pause, and it’s as fun as it sounds – your application temporarily becomes unresponsive.</p>
+<p>The tri-color approach is concurrent, meaning your program (the party) continues while garbage collection happens. It’s like having ninja cleaners who work so seamlessly you barely notice them.</p>
+<h2 id="A-Practical-Example-The-Abandoned-Drink-Problem"><a href="#A-Practical-Example-The-Abandoned-Drink-Problem" class="headerlink" title="A Practical Example: The Abandoned Drink Problem"></a>A Practical Example: The Abandoned Drink Problem</h2><p>Let’s visualize this with a party scenario:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Guest A (Root) → Talking to → Guest B → Holding → Drink C</span><br><span class="line">                            ↓</span><br><span class="line">                  Also talking to → Guest D → Holding → Drink E</span><br></pre></td></tr></table></figure></div>
+
+<p>Initially, all guests and drinks are white (potentially garbage).</p>
+<ol>
+<li><strong>Start collection</strong>: Guest A is a root (directly accessible in your program), so mark them gray.</li>
+<li><strong>Process gray object</strong>: Mark Guest A black, and their connections (Guest B and D) gray.</li>
+<li><strong>Process more gray objects</strong>: Mark Guest B black and their connection (Drink C) gray.</li>
+<li><strong>Continue</strong>: Mark Guest D black and their connection (Drink E) gray.</li>
+<li><strong>Finish up</strong>: Mark Drinks C and E black.</li>
+</ol>
+<p>At the end, everyone and everything is black – meaning all are reachable and in use. But imagine if Guest B dropped Drink C and picked up a new Drink F:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Guest A (Root) → Talking to → Guest B → Holding → Drink F</span><br><span class="line">                            ↓</span><br><span class="line">                  Also talking to → Guest D → Holding → Drink E</span><br></pre></td></tr></table></figure></div>
+
+<p>Drink C would remain white after our collection process, identified as garbage, and ready for cleanup.</p>
+<h2 id="The-Write-Barrier-The-Party-Bouncer"><a href="#The-Write-Barrier-The-Party-Bouncer" class="headerlink" title="The Write Barrier: The Party Bouncer"></a>The Write Barrier: The Party Bouncer</h2><p>“But wait!” you might say. “What if my program changes these connections while garbage collection is running?”</p>
+<p>Excellent question! This is where Go’s “write barrier” comes in. Think of it as a party bouncer that keeps track of any changes to relationships between objects during collection. If your program tries to create a new reference between objects while collection is happening, the write barrier ensures this change is properly reflected in our coloring system.</p>
+<h2 id="When-Garbage-Collection-Kicks-In"><a href="#When-Garbage-Collection-Kicks-In" class="headerlink" title="When Garbage Collection Kicks In"></a>When Garbage Collection Kicks In</h2><p>Go triggers garbage collection when:</p>
+<ul>
+<li>Your program allocates more memory than a certain threshold</li>
+<li>A certain time period has passed since the last collection</li>
+</ul>
+<p>This adaptive approach means collection happens more frequently during memory-intensive operations and less during quieter periods – like having more frequent cleanups during a wild party and fewer when things are calm.</p>
+<h2 id="The-Real-World-Impact"><a href="#The-Real-World-Impact" class="headerlink" title="The Real-World Impact"></a>The Real-World Impact</h2><p>Go’s garbage collector is designed for low latency rather than maximum throughput. This means it prioritizes keeping your application responsive over reclaiming every last byte of memory immediately. In practical terms:</p>
+<ul>
+<li>Your Go program might use a bit more memory than a manually managed C program</li>
+<li>But your users won’t experience those frustrating freezes common in older garbage-collected languages</li>
+</ul>
+<h2 id="Tuning-Tips-for-the-Curious"><a href="#Tuning-Tips-for-the-Curious" class="headerlink" title="Tuning Tips for the Curious"></a>Tuning Tips for the Curious</h2><p>While Go’s garbage collector works wonderfully out of the box, you can tweak it for specific needs:</p>
+<div class="code-container" data-rel="Go"><figure class="iseeu highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Make GC more aggressive (reclaim memory sooner, but use more CPU)</span></span><br><span class="line">debug.SetGCPercent(<span class="number">50</span>)  <span class="comment">// Default is 100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Or make it less aggressive (save CPU, but use more memory)</span></span><br><span class="line">debug.SetGCPercent(<span class="number">200</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p>You can also manually trigger collection with <code>runtime.GC()</code>, though this is rarely necessary.</p>
+<h2 id="Conclusion-Party-On-Memory"><a href="#Conclusion-Party-On-Memory" class="headerlink" title="Conclusion: Party On, Memory!"></a>Conclusion: Party On, Memory!</h2><p>Go’s tri-color marking algorithm is a brilliant solution to a complex problem – keeping your memory clean without interrupting your program’s flow. It’s like having a magical party where the cleanup happens invisibly while the fun continues.</p>
+<p>Next time your Go program is happily running without a care in the world, spare a thought for the diligent garbage collector, silently marking objects with its three colorful markers, ensuring your memory party doesn’t turn into a chaotic mess.</p>
+<p>And remember – in the world of memory management, being “garbage collected” is actually a good thing!</p>
+<hr>
+<p><em>P.S. If you ever find yourself explaining garbage collection at an actual party, you might need to reconsider your small talk strategy… or find nerdier parties!</em></p>
 
 		</div>
 
@@ -313,18 +374,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> 如何理解 Go 语言的 select 语句</li>
+        <li><strong>Title:</strong> Understanding Golang&#39;s Tri-Color Marking: A Garbage Collection Adventure</li>
         <li><strong>Author:</strong> DNEGEL3125</li>
         <li><strong>Created at
-                :</strong> 2025-03-15 14:56:56</li>
+                :</strong> 2025-04-28 00:46:30</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-03-15 15:05:27
+                    :</strong> 2025-04-28 00:58:20
             </li>
         
         <li>
-            <strong>Link:</strong> https://github.com/DNEGEL3125.github.io/2025/03/15/如何理解-Go-语言的-select-语句/
+            <strong>Link:</strong> https://github.com/DNEGEL3125.github.io/2025/04/28/Understanding-Golang-s-Tri-Color-Marking-A-Garbage-Collection-Adventure/
         </li>
         <li>
             <strong>
@@ -349,6 +410,10 @@
 				<a href="/tags/Go/">#Go</a>&nbsp;
 			</li>
 			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/GC/">#GC</a>&nbsp;
+			</li>
+			
 		</ul>
 		
 
@@ -357,23 +422,11 @@
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/03/17/Golang-%E7%9A%84-channel-%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%BC%9A%E5%8F%91%E7%94%9F-panic/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">Golang 的 channel 在哪些情况会发生 panic</span>
-						<span class="post-nav-item">Prev posts</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/03/12/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%EF%BC%9F/">
+				<a class="next" rel="next" href="/2025/03/17/Golang-%E7%9A%84-channel-%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%BC%9A%E5%8F%91%E7%94%9F-panic/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">为什么需要工厂模式？</span>
+						<span class="post-nav-title-item">Golang 的 channel 在哪些情况会发生 panic</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -437,8 +490,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">如何理解 Go 语言的 select 语句</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="nav-text">多路复用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-text">示例代码</span></a></li></ol>
+		<div class="page-title">Understanding Golang&#39;s Tri-Color Marking: A Garbage Collection Adventure</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Memory-Management-Party-Problem"><span class="nav-text">The Memory Management Party Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Enter-the-Tri-Color-Algorithm-Memory-Management-with-Crayons"><span class="nav-text">Enter the Tri-Color Algorithm: Memory Management with Crayons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Coloring-Party"><span class="nav-text">The Coloring Party</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-is-this-Brilliant"><span class="nav-text">Why is this Brilliant?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Practical-Example-The-Abandoned-Drink-Problem"><span class="nav-text">A Practical Example: The Abandoned Drink Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Write-Barrier-The-Party-Bouncer"><span class="nav-text">The Write Barrier: The Party Bouncer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#When-Garbage-Collection-Kicks-In"><span class="nav-text">When Garbage Collection Kicks In</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Real-World-Impact"><span class="nav-text">The Real-World Impact</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tuning-Tips-for-the-Curious"><span class="nav-text">Tuning Tips for the Curious</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-Party-On-Memory"><span class="nav-text">Conclusion: Party On, Memory!</span></a></li></ol>
 
 	</div>
 </div>
