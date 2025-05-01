@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://DNEGEL3125.github.io/404.html"/>
+    <link rel="canonical" href="https://DNEGEL3125.github.io/2025/04/30/how-gmp-scheduling-works-in-go-a-deep-dive/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -22,14 +22,18 @@
     
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Page Not Found">
-<meta property="og:url" content="https://dnegel3125.github.io/404.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How GMP Scheduling Works in Go: A Deep Dive">
+<meta property="og:url" content="https://dnegel3125.github.io/2025/04/30/How-GMP-Scheduling-Works-in-Go-A-Deep-Dive/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://dnegel3125.github.io/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-04-30T03:29:42.000Z">
+<meta property="article:modified_time" content="2025-05-01T04:06:51.441Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="GMP">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://dnegel3125.github.io/images/redefine-og.webp">
     
@@ -43,7 +47,7 @@
     
     <title>
         
-            Page Not Found | DNEGEL3125&#39;s blog
+            How GMP Scheduling Works in Go: A Deep Dive | DNEGEL3125&#39;s blog
         
     </title>
 
@@ -226,28 +230,294 @@
 			
 
 			<div class="main-content">
-				<div class="page-template-container">
-	
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
 
-	
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">How GMP Scheduling Works in Go: A Deep Dive</h1>
+			</div>
+			
+		</div>
 
-	<div class="page-template-content markdown-body">
 		
-		<h1>Page Not Found</h1>
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/CatchTheChess.pic.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">DNEGEL3125</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-04-30 11:29:42</span>
+        <span class="mobile">2025-04-30 11:29:42</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-05-01 12:06:51</span>
+            <span class="mobile">2025-05-01 12:06:51</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Go/">Go</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/GMP/">GMP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
 		
 
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>Go is known for its built-in concurrency model, primarily powered by <strong>goroutines</strong>. Behind the scenes, the Go runtime uses an elegant and powerful system called the <strong>GMP model</strong> to schedule these goroutines. If you’ve ever wondered how Go keeps your goroutines running efficiently across multiple threads and CPUs, this post is for you.</p>
+<h2 id="What-is-GMP"><a href="#What-is-GMP" class="headerlink" title="What is GMP?"></a>What is GMP?</h2><p><strong>GMP</strong> is short for:</p>
+<ul>
+<li><strong>G</strong>: Goroutine – a lightweight, user-space thread.</li>
+<li><strong>M</strong>: Machine – represents an OS thread.</li>
+<li><strong>P</strong>: Processor – a logical processor that holds a queue of runnable goroutines and is responsible for scheduling them on machines.</li>
+</ul>
+<p>Let’s break down how these interact and then look at how scheduling happens.</p>
+<h2 id="The-Components"><a href="#The-Components" class="headerlink" title="The Components"></a>The Components</h2><h3 id="1-G-Goroutine"><a href="#1-G-Goroutine" class="headerlink" title="1. G (Goroutine)"></a>1. <strong>G (Goroutine)</strong></h3><ul>
+<li>A goroutine is the unit of execution in Go.</li>
+<li>It’s cheaper than a thread: just a few KB of stack space to start.</li>
+<li>Goroutines are multiplexed onto threads by the Go scheduler.</li>
+</ul>
+<h3 id="2-M-Machine"><a href="#2-M-Machine" class="headerlink" title="2. M (Machine)"></a>2. <strong>M (Machine)</strong></h3><ul>
+<li>Represents an <strong>OS thread</strong>.</li>
+<li>M actually executes the code of G.</li>
+<li>M must be associated with a <strong>P</strong> to execute Go code (i.e., scheduling only happens when M is holding a P).</li>
+<li>M can be blocked (e.g., during a system call), in which case the Go scheduler may spin up another M to keep executing.</li>
+</ul>
+<h3 id="3-P-Processor"><a href="#3-P-Processor" class="headerlink" title="3. P (Processor)"></a>3. <strong>P (Processor)</strong></h3><ul>
+<li>P is a context that manages the goroutines and some scheduling data.</li>
+<li>Holds a local run queue of goroutines.</li>
+<li>At runtime startup, the Go scheduler creates <code>GOMAXPROCS</code> Ps – which determines the maximum number of goroutines that can run simultaneously.</li>
+</ul>
+<h2 id="How-Scheduling-Works"><a href="#How-Scheduling-Works" class="headerlink" title="How Scheduling Works"></a>How Scheduling Works</h2><p>Here’s a high-level overview of the scheduling cycle:</p>
+<h3 id="1-Initialization"><a href="#1-Initialization" class="headerlink" title="1. Initialization"></a>1. <strong>Initialization</strong></h3><ul>
+<li>The Go runtime starts with a number of Ps equal to <code>GOMAXPROCS</code>.</li>
+<li>A pool of idle Ms is available to grab work when needed.</li>
+<li>Each P has its own queue of runnable Gs.</li>
+</ul>
+<h3 id="2-Executing-Goroutines"><a href="#2-Executing-Goroutines" class="headerlink" title="2. Executing Goroutines"></a>2. <strong>Executing Goroutines</strong></h3><ul>
+<li>An M picks up a P.</li>
+<li>M checks P’s local run queue for Gs.</li>
+<li>If there are goroutines, M pops one off and starts executing it.</li>
+<li>When the goroutine blocks (e.g., I&#x2F;O, syscall), M detaches from P, and the scheduler assigns P to another idle M (if available).</li>
+</ul>
+<h3 id="3-Work-Stealing"><a href="#3-Work-Stealing" class="headerlink" title="3. Work Stealing"></a>3. <strong>Work Stealing</strong></h3><ul>
+<li>If P’s local run queue is empty, it attempts to <strong>steal</strong> goroutines from another P’s queue (called <strong>work stealing</strong>).</li>
+<li>This balances load across processors.</li>
+</ul>
+<h3 id="4-Global-Run-Queue"><a href="#4-Global-Run-Queue" class="headerlink" title="4. Global Run Queue"></a>4. <strong>Global Run Queue</strong></h3><ul>
+<li>There’s also a global run queue shared among all Ps.</li>
+<li>If a new goroutine is spawned (using <code>go func()</code>), it may be pushed onto the local or global queue depending on conditions (e.g., whether the local queue is full).</li>
+<li>When a P’s queue is empty and stealing fails, it checks the global queue.</li>
+</ul>
+<h3 id="5-Syscalls-and-Blocking"><a href="#5-Syscalls-and-Blocking" class="headerlink" title="5. Syscalls and Blocking"></a>5. <strong>Syscalls and Blocking</strong></h3><ul>
+<li>If an M running a G makes a syscall or blocks, it releases its P.</li>
+<li>The Go scheduler ensures that P doesn’t sit idle – another M will pick it up.</li>
+<li>When the blocked M finishes the syscall, it re-enters the pool of idle Ms.</li>
+</ul>
+<h3 id="6-Garbage-Collection-GC"><a href="#6-Garbage-Collection-GC" class="headerlink" title="6. Garbage Collection (GC)"></a>6. <strong>Garbage Collection (GC)</strong></h3><ul>
+<li>During GC, all Gs are stopped briefly (<strong>STW – Stop The World</strong>) to allow concurrent marking.</li>
+<li>The scheduler helps divide GC work across all Ps.</li>
+</ul>
+<h2 id="Visual-Example"><a href="#Visual-Example" class="headerlink" title="Visual Example"></a>Visual Example</h2><p>Imagine <code>GOMAXPROCS = 2</code>. Then:</p>
+<ul>
+<li>Two Ps are created: P0 and P1.</li>
+<li>Several goroutines (G1 to G6) are created.</li>
+<li>Ps distribute Gs in their local queues.</li>
+<li>Ms (say M1 and M2) pick up Ps and start executing Gs.</li>
+<li>If G4 blocks on a syscall, M1 goes idle, and P1 is assigned to another M if one is available.</li>
+<li>If P1 runs out of work, it might steal from P0’s queue.<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/gmp-flowchart.png"
+                      alt="GMP Flowchart"
+                ></li>
+</ul>
+<h2 id="Key-Scheduling-Optimizations"><a href="#Key-Scheduling-Optimizations" class="headerlink" title="Key Scheduling Optimizations"></a>Key Scheduling Optimizations</h2><ul>
+<li><strong>Preemption</strong>: Long-running Gs are preempted to avoid starvation.</li>
+<li><strong>Batch Scheduling</strong>: New goroutines may be added in batches to reduce lock contention.</li>
+<li><strong>Local Queues</strong>: Each P has its own queue to reduce contention, improving cache locality.</li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>The GMP model is a clever way to decouple goroutines from OS threads while still maximizing CPU utilization. It:</p>
+<ul>
+<li>Provides <strong>scalability</strong> through logical processors.</li>
+<li>Ensures <strong>load balancing</strong> via work stealing.</li>
+<li>Maintains <strong>low overhead</strong> by minimizing thread creation.</li>
+</ul>
+<p>This design is a big part of why Go can handle hundreds of thousands of goroutines with ease.</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> How GMP Scheduling Works in Go: A Deep Dive</li>
+        <li><strong>Author:</strong> DNEGEL3125</li>
+        <li><strong>Created at
+                :</strong> 2025-04-30 11:29:42</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-05-01 12:06:51
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://github.com/DNEGEL3125.github.io/2025/04/30/How-GMP-Scheduling-Works-in-Go-A-Deep-Dive/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Go/">#Go</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/GMP/">#GMP</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/04/29/MySQL-%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%88%86%E7%B1%BB/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">MySQL 索引类型及分类</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
 		
 	</div>
 
-	<div class="page-template-comments">
-		
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">How GMP Scheduling Works in Go: A Deep Dive</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-GMP"><span class="nav-text">What is GMP?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Components"><span class="nav-text">The Components</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-G-Goroutine"><span class="nav-text">1. G (Goroutine)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-M-Machine"><span class="nav-text">2. M (Machine)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-P-Processor"><span class="nav-text">3. P (Processor)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-Scheduling-Works"><span class="nav-text">How Scheduling Works</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Initialization"><span class="nav-text">1. Initialization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Executing-Goroutines"><span class="nav-text">2. Executing Goroutines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Work-Stealing"><span class="nav-text">3. Work Stealing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Global-Run-Queue"><span class="nav-text">4. Global Run Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Syscalls-and-Blocking"><span class="nav-text">5. Syscalls and Blocking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Garbage-Collection-GC"><span class="nav-text">6. Garbage Collection (GC)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-Example"><span class="nav-text">Visual Example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-Scheduling-Optimizations"><span class="nav-text">Key Scheduling Optimizations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-text">Summary</span></a></li></ol>
+
 	</div>
 </div>
-
-<div class="paginator">
+	</div>
 	
 </div>
-  
 			</div>
 
 			
@@ -325,6 +595,26 @@
 		</div>
 	</div>
 
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
 	
 
 	<div class="right-side-tools-container">
@@ -407,6 +697,7 @@
         containers: ["#swup"],
     });
 </script>
+
 
 
 
