@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="DNEGEL3125">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://DNEGEL3125.github.io/2025/05/01/optimizing-redis-batch-commands/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimizing Redis Batch Commands">
+<meta property="og:url" content="https://dnegel3125.github.io/2025/05/01/Optimizing-Redis-Batch-Commands/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://dnegel3125.github.io/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-05-01T04:36:07.000Z">
+<meta property="article:modified_time" content="2025-05-16T13:15:13.237Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dnegel3125.github.io/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/CatchTheChess-round.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/CatchTheChess-round.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/CatchTheChess-round.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Optimizing Redis Batch Commands | DNEGEL3125&#39;s blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"dnegel3125.github.io","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"DNEGEL3125's blog","subtitle":{"text":["为了记录所学而写的笔记。","Notes written to keep track of what has been learned. "],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                DNEGEL3125&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Optimizing Redis Batch Commands</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/CatchTheChess.pic.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">DNEGEL3125</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-05-01 12:36:07</span>
+        <span class="mobile">2025-05-01 12:36:07</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-05-16 21:15:13</span>
+            <span class="mobile">2025-05-16 21:15:13</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Redis/">Redis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>Redis is beloved for its blazing speed, but even the fastest database can become a bottleneck when not used optimally. In high-throughput applications, effective batching strategies can dramatically improve performance. This blog explores various techniques to optimize Redis batch commands for maximum efficiency.</p>
+<h2 id="Understanding-Redis-Batching"><a href="#Understanding-Redis-Batching" class="headerlink" title="Understanding Redis Batching"></a>Understanding Redis Batching</h2><p>Before diving into optimization techniques, let’s clarify what batching means in the Redis context:</p>
+<p><strong>Redis Batching</strong> refers to combining multiple operations into a single client-server roundtrip. This can be done through:</p>
+<ol>
+<li><strong>Pipelining</strong>: Sending multiple commands to the server without waiting for responses</li>
+<li><strong>Multi&#x2F;Exec Transactions</strong>: Grouping commands that execute atomically</li>
+<li><strong>Lua Scripting</strong>: Executing complex logic on the server side</li>
+<li><strong>Command-specific batching</strong>: Using commands designed for bulk operations (MGET, MSET, etc.)</li>
+</ol>
+<p>Each approach has distinct advantages and optimization opportunities. Let’s explore them.</p>
+<h2 id="1-Optimizing-Redis-Pipelining"><a href="#1-Optimizing-Redis-Pipelining" class="headerlink" title="1. Optimizing Redis Pipelining"></a>1. Optimizing Redis Pipelining</h2><p>Pipelining is one of the most effective ways to boost Redis performance by reducing network overhead.</p>
+<h3 id="Key-Optimization-Strategies"><a href="#Key-Optimization-Strategies" class="headerlink" title="Key Optimization Strategies"></a>Key Optimization Strategies</h3><p><strong>Appropriate Batch Sizes</strong></p>
+<p>Finding the optimal batch size involves balancing several factors:</p>
+<ul>
+<li>Too small: Network roundtrips become the bottleneck</li>
+<li>Too large: Memory pressure increases and response time for the entire batch goes up</li>
+</ul>
+<p>For most applications, batch sizes between 100-1000 commands work well, but this should be benchmarked for your specific use case.</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example of optimized Python Redis pipelining</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">optimized_pipeline_get</span>(<span class="params">redis_client, keys</span>):</span><br><span class="line">    <span class="comment"># Batch size determined by benchmarking</span></span><br><span class="line">    OPTIMAL_BATCH_SIZE = <span class="number">500</span></span><br><span class="line">    results = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(keys), OPTIMAL_BATCH_SIZE):</span><br><span class="line">        batch_keys = keys[i:i+OPTIMAL_BATCH_SIZE]</span><br><span class="line">        pipe = redis_client.pipeline()</span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> batch_keys:</span><br><span class="line">            pipe.get(key)</span><br><span class="line">        results.extend(pipe.execute())</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Pipeline Reuse</strong></p>
+<p>Creating pipeline objects has overhead. For repetitive operations, consider reusing pipeline objects:</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Reusing pipeline object</span></span><br><span class="line">pipe = redis_client.pipeline()</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):  <span class="comment"># 10 batches of operations</span></span><br><span class="line">    <span class="comment"># Clear previous commands but reuse the pipeline object</span></span><br><span class="line">    pipe.reset()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Add batch commands</span></span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> current_batch:</span><br><span class="line">        pipe.get(key)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Execute current batch</span></span><br><span class="line">    results = pipe.execute()</span><br><span class="line">    process_results(results)</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Asynchronous Pipelining</strong></p>
+<p>For non-blocking applications, combine pipelining with asynchronous clients:</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Using aioredis for async pipelining</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">async_pipeline_operation</span>(<span class="params">redis, keys</span>):</span><br><span class="line">    pipe = redis.pipeline()</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> keys:</span><br><span class="line">        pipe.get(key)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> pipe.execute()</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="2-Multi-Exec-Transaction-Optimization"><a href="#2-Multi-Exec-Transaction-Optimization" class="headerlink" title="2. Multi&#x2F;Exec Transaction Optimization"></a>2. Multi&#x2F;Exec Transaction Optimization</h2><p>Redis transactions ensure commands execute without interruption from other clients.</p>
+<h3 id="Optimization-Techniques"><a href="#Optimization-Techniques" class="headerlink" title="Optimization Techniques"></a>Optimization Techniques</h3><p><strong>Minimize Transaction Scope</strong></p>
+<p>Only include essential commands in your transaction to reduce lock time:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MULTI</span><br><span class="line">HSET user:1000 login_count 10</span><br><span class="line">HINCRBY user:1000 points 5</span><br><span class="line">EXEC</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Use WATCH Efficiently</strong></p>
+<p>When using optimistic locking with WATCH, be selective about watched keys:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">WATCH inventory:item:101</span><br><span class="line">val = GET inventory:item:101</span><br><span class="line">if parseInt(val) &gt; 0:</span><br><span class="line">    MULTI</span><br><span class="line">    DECR inventory:item:101</span><br><span class="line">    EXEC</span><br><span class="line">else:</span><br><span class="line">    UNWATCH</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Transaction Batching</strong></p>
+<p>Group related operations into single transactions rather than multiple:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Instead of multiple small transactions</span><br><span class="line">MULTI</span><br><span class="line">LPUSH list:notifications 123</span><br><span class="line">LTRIM list:notifications 0 999</span><br><span class="line">INCR counter:notifications</span><br><span class="line">EXEC</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="3-Lua-Script-Optimization"><a href="#3-Lua-Script-Optimization" class="headerlink" title="3. Lua Script Optimization"></a>3. Lua Script Optimization</h2><p>Lua scripts execute atomically on the Redis server, reducing network traffic and ensuring consistency.</p>
+<h3 id="Optimization-Strategies"><a href="#Optimization-Strategies" class="headerlink" title="Optimization Strategies"></a>Optimization Strategies</h3><p><strong>Script Loading and Caching</strong></p>
+<p>Use SCRIPT LOAD and EVALSHA to avoid retransmitting scripts:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Load script once</span><br><span class="line">SCRIPT LOAD &quot;redis.call(&#x27;SET&#x27;, KEYS[1], ARGV[1]); return redis.call(&#x27;GET&#x27;, KEYS[1])&quot;</span><br><span class="line"># Returns SHA: &quot;6b1bf486c81ceb7edf3c093f4c48582e38c0e791&quot;</span><br><span class="line"></span><br><span class="line"># Then reuse by SHA</span><br><span class="line">EVALSHA &quot;6b1bf486c81ceb7edf3c093f4c48582e38c0e791&quot; 1 mykey myvalue</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Efficient Data Access Patterns</strong></p>
+<p>Structure Lua scripts to minimize data movement:</p>
+<div class="code-container" data-rel="Lua"><figure class="iseeu highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Inefficient: Extracting all data and processing in Lua</span></span><br><span class="line"><span class="keyword">local</span> all_values = redis.call(<span class="string">&#x27;HGETALL&#x27;</span>, KEYS[<span class="number">1</span>])</span><br><span class="line"><span class="comment">-- Process everything in Lua (slow for large hashes)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- More efficient: Targeted access</span></span><br><span class="line"><span class="keyword">local</span> specific_field = redis.call(<span class="string">&#x27;HGET&#x27;</span>, KEYS[<span class="number">1</span>], ARGV[<span class="number">1</span>])</span><br><span class="line"><span class="comment">-- Process only what&#x27;s needed</span></span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Limiting Computational Complexity</strong></p>
+<p>Avoid CPU-intensive operations in Lua scripts as they block Redis:</p>
+<div class="code-container" data-rel="Lua"><figure class="iseeu highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Avoid complex calculations in Lua</span></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">factorial</span><span class="params">(n)</span></span>  <span class="comment">-- Could block Redis for large n</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span> <span class="keyword">then</span> <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> n * factorial(n<span class="number">-1</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Better: Limit scope or pre-calculate values</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="4-Optimizing-Bulk-Commands"><a href="#4-Optimizing-Bulk-Commands" class="headerlink" title="4. Optimizing Bulk Commands"></a>4. Optimizing Bulk Commands</h2><p>Redis provides specialized commands for batch operations.</p>
+<h3 id="Optimization-Techniques-1"><a href="#Optimization-Techniques-1" class="headerlink" title="Optimization Techniques"></a>Optimization Techniques</h3><p><strong>Choosing the Right Command</strong></p>
+<p>Select commands designed for batching:</p>
+<table>
+<thead>
+<tr>
+<th>Instead of</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Multiple GET</td>
+<td>MGET</td>
+</tr>
+<tr>
+<td>Multiple SET</td>
+<td>MSET</td>
+</tr>
+<tr>
+<td>Multiple HDEL</td>
+<td>Single HDEL with multiple fields</td>
+</tr>
+<tr>
+<td>Multiple SADD</td>
+<td>Single SADD with multiple members</td>
+</tr>
+</tbody></table>
+<p><strong>Serialization Strategies</strong></p>
+<p>Consider data serialization for complex objects:</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Instead of multiple hash operations</span></span><br><span class="line">user_data = &#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Alex&quot;</span>, </span><br><span class="line">    <span class="string">&quot;email&quot;</span>: <span class="string">&quot;alex@example.com&quot;</span>,</span><br><span class="line">    <span class="string">&quot;preferences&quot;</span>: json.dumps(&#123;<span class="string">&quot;theme&quot;</span>: <span class="string">&quot;dark&quot;</span>, <span class="string">&quot;notifications&quot;</span>: <span class="literal">True</span>&#125;)</span><br><span class="line">&#125;</span><br><span class="line">redis_client.hmset(<span class="string">f&quot;user:<span class="subst">&#123;user_id&#125;</span>&quot;</span>, user_data)</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Hybrid Approach</strong></p>
+<p>Combine specialized batch commands with pipelining:</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pipe = redis_client.pipeline()</span><br><span class="line"><span class="comment"># Use MSET for related keys</span></span><br><span class="line">pipe.mset(&#123;</span><br><span class="line">    <span class="string">f&quot;user:<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>:profile&quot;</span>: profile_json,</span><br><span class="line">    <span class="string">f&quot;user:<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>:settings&quot;</span>: settings_json</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment"># Add other operations</span></span><br><span class="line">pipe.expire(<span class="string">f&quot;user:<span class="subst">&#123;<span class="built_in">id</span>&#125;</span>:profile&quot;</span>, <span class="number">3600</span>)</span><br><span class="line">pipe.sadd(<span class="string">&quot;active_users&quot;</span>, <span class="built_in">id</span>)</span><br><span class="line">pipe.execute()</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="5-Client-Side-Optimization-Techniques"><a href="#5-Client-Side-Optimization-Techniques" class="headerlink" title="5. Client-Side Optimization Techniques"></a>5. Client-Side Optimization Techniques</h2><p>The client configuration significantly impacts batching performance.</p>
+<h3 id="Key-Optimizations"><a href="#Key-Optimizations" class="headerlink" title="Key Optimizations"></a>Key Optimizations</h3><p><strong>Connection Pooling</strong></p>
+<p>Properly configure connection pools for your workload:</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Redis-py connection pool optimization</span></span><br><span class="line">pool = redis.ConnectionPool(</span><br><span class="line">    host=<span class="string">&#x27;localhost&#x27;</span>,</span><br><span class="line">    max_connections=<span class="number">10</span>,  <span class="comment"># Set based on expected concurrent operations</span></span><br><span class="line">    socket_timeout=<span class="number">5.0</span>,</span><br><span class="line">    socket_connect_timeout=<span class="number">1.0</span></span><br><span class="line">)</span><br><span class="line">redis_client = redis.Redis(connection_pool=pool)</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Client Buffer Management</strong></p>
+<p>Configure appropriate client buffers:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># redis.conf client buffer settings</span><br><span class="line">client-output-buffer-limit normal 32mb 8mb 60</span><br><span class="line">client-output-buffer-limit slave 256mb 64mb 60</span><br><span class="line">client-output-buffer-limit pubsub 32mb 8mb 60</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Compression and Serialization</strong></p>
+<p>Choose efficient serialization formats for large values:</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> msgpack</span><br><span class="line"></span><br><span class="line"><span class="comment"># More compact than JSON for many data structures</span></span><br><span class="line">data = &#123;<span class="string">&quot;complex&quot;</span>: <span class="string">&quot;structure&quot;</span>, <span class="string">&quot;with&quot;</span>: [<span class="string">&quot;many&quot;</span>, <span class="string">&quot;fields&quot;</span>]&#125;</span><br><span class="line">compressed = msgpack.packb(data)</span><br><span class="line">redis_client.<span class="built_in">set</span>(<span class="string">&quot;my_key&quot;</span>, compressed)</span><br><span class="line"></span><br><span class="line"><span class="comment"># When retrieving</span></span><br><span class="line">result = msgpack.unpackb(redis_client.get(<span class="string">&quot;my_key&quot;</span>))</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="6-Redis-Cluster-Specific-Optimizations"><a href="#6-Redis-Cluster-Specific-Optimizations" class="headerlink" title="6. Redis Cluster-Specific Optimizations"></a>6. Redis Cluster-Specific Optimizations</h2><p>In Redis Cluster, batching requires additional considerations.</p>
+<h3 id="Optimization-Strategies-1"><a href="#Optimization-Strategies-1" class="headerlink" title="Optimization Strategies"></a>Optimization Strategies</h3><p><strong>Key Collocation</strong></p>
+<p>Design keys to ensure related data ends up on the same shard:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user:&#123;id&#125;:profile</span><br><span class="line">user:&#123;id&#125;:settings</span><br></pre></td></tr></table></figure></div>
+
+<p>The hash tag <code>&#123;id&#125;</code> ensures these keys are on the same shard, enabling efficient batching.</p>
+<p><strong>Smart Client Support</strong></p>
+<p>Use clients that understand cluster topology:</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Redis-py-cluster example</span></span><br><span class="line"><span class="keyword">from</span> rediscluster <span class="keyword">import</span> RedisCluster</span><br><span class="line"></span><br><span class="line">nodes = [&#123;<span class="string">&quot;host&quot;</span>: <span class="string">&quot;127.0.0.1&quot;</span>, <span class="string">&quot;port&quot;</span>: <span class="string">&quot;7000&quot;</span>&#125;]</span><br><span class="line">cluster_client = RedisCluster(startup_nodes=nodes, decode_responses=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Will route commands to correct nodes</span></span><br><span class="line">pipe = cluster_client.pipeline()</span><br><span class="line">pipe.<span class="built_in">set</span>(<span class="string">&quot;key1&quot;</span>, <span class="string">&quot;value1&quot;</span>)</span><br><span class="line">pipe.<span class="built_in">set</span>(<span class="string">&quot;key2&quot;</span>, <span class="string">&quot;value2&quot;</span>) </span><br><span class="line">pipe.execute()</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Command Routing Awareness</strong></p>
+<p>Be aware of which commands can be batched across slots and which cannot:</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Commands like MGET can be optimized by the client to batch</span></span><br><span class="line"><span class="comment"># requests to the same node while splitting across nodes as needed</span></span><br><span class="line">cluster_client.mget([<span class="string">&quot;key1&quot;</span>, <span class="string">&quot;key2&quot;</span>, <span class="string">&quot;key3&quot;</span>])</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="7-Monitoring-and-Benchmarking"><a href="#7-Monitoring-and-Benchmarking" class="headerlink" title="7. Monitoring and Benchmarking"></a>7. Monitoring and Benchmarking</h2><p>Optimization should be data-driven. Use these tools to measure the impact of your batching strategies:</p>
+<h3 id="Redis-Built-in-Tools"><a href="#Redis-Built-in-Tools" class="headerlink" title="Redis Built-in Tools"></a>Redis Built-in Tools</h3><p><strong>SLOWLOG</strong> captures commands that exceed a configured execution time:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Check slow commands</span><br><span class="line">SLOWLOG GET 10</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>INFO</strong> provides statistics on command execution:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Get command statistics</span><br><span class="line">INFO commandstats</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Benchmarking-Tools"><a href="#Benchmarking-Tools" class="headerlink" title="Benchmarking Tools"></a>Benchmarking Tools</h3><p><strong>redis-benchmark</strong> for basic performance testing:</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-benchmark -t <span class="built_in">set</span>,get -n 100000 -q</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Custom benchmarking</strong> for your specific workload:</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> redis</span><br><span class="line"></span><br><span class="line">r = redis.Redis()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Benchmark unbatched vs batched operations</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">benchmark_comparison</span>(<span class="params">key_count=<span class="number">10000</span></span>):</span><br><span class="line">    keys = [<span class="string">f&quot;bench:key:<span class="subst">&#123;i&#125;</span>&quot;</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(key_count)]</span><br><span class="line">    values = [<span class="string">f&quot;value:<span class="subst">&#123;i&#125;</span>&quot;</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(key_count)]</span><br><span class="line">    key_value_pairs = <span class="built_in">dict</span>(<span class="built_in">zip</span>(keys, values))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Unbatched</span></span><br><span class="line">    start = time.time()</span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> key_value_pairs.items():</span><br><span class="line">        r.<span class="built_in">set</span>(k, v)</span><br><span class="line">    unbatched_time = time.time() - start</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Clear data</span></span><br><span class="line">    r.delete(*keys)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Batched with pipeline</span></span><br><span class="line">    start = time.time()</span><br><span class="line">    pipe = r.pipeline()</span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> key_value_pairs.items():</span><br><span class="line">        pipe.<span class="built_in">set</span>(k, v)</span><br><span class="line">    pipe.execute()</span><br><span class="line">    batched_time = time.time() - start</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Batched with MSET</span></span><br><span class="line">    start = time.time()</span><br><span class="line">    r.mset(key_value_pairs)</span><br><span class="line">    mset_time = time.time() - start</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;unbatched_time&quot;</span>: unbatched_time,</span><br><span class="line">        <span class="string">&quot;pipeline_time&quot;</span>: batched_time,</span><br><span class="line">        <span class="string">&quot;mset_time&quot;</span>: mset_time,</span><br><span class="line">        <span class="string">&quot;pipeline_speedup&quot;</span>: unbatched_time / batched_time,</span><br><span class="line">        <span class="string">&quot;mset_speedup&quot;</span>: unbatched_time / mset_time</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">results = benchmark_comparison()</span><br><span class="line"><span class="built_in">print</span>(results)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Optimizing Redis batch commands is a multifaceted challenge that requires understanding your workload, Redis features, and performance trade-offs. The strategies outlined in this blog post provide a starting point for enhancing Redis performance through effective batching.</p>
+<p>Remember these key principles:</p>
+<ul>
+<li>Reduce network roundtrips with pipelining and multi-key commands</li>
+<li>Move complex logic to the server with Lua scripts</li>
+<li>Benchmark to find optimal batch sizes for your use case</li>
+<li>Consider data locality in clustered environments</li>
+<li>Monitor and measure to validate your optimizations</li>
+</ul>
+<p>By applying these techniques thoughtfully, you can dramatically improve Redis performance while maintaining reliability and scalability for your applications.</p>
+<p>Happy batching!</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Optimizing Redis Batch Commands</li>
+        <li><strong>Author:</strong> DNEGEL3125</li>
+        <li><strong>Created at
+                :</strong> 2025-05-01 12:36:07</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-05-16 21:15:13
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://github.com/DNEGEL3125.github.io/2025/05/01/Optimizing-Redis-Batch-Commands/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Redis/">#Redis</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/05/12/%E5%AD%90%E4%B8%B2%E5%88%92%E5%88%86%E5%AD%97%E5%85%B8%E6%A0%91%E8%8A%82%E7%82%B9%E6%95%B0%E5%92%8C/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">子串划分字典树节点数和</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/04/30/How-GMP-Scheduling-Works-in-Go-A-Deep-Dive/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">How GMP Scheduling Works in Go: A Deep Dive</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">Optimizing Redis Batch Commands</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-Redis-Batching"><span class="nav-text">Understanding Redis Batching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Optimizing-Redis-Pipelining"><span class="nav-text">1. Optimizing Redis Pipelining</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Optimization-Strategies"><span class="nav-text">Key Optimization Strategies</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Multi-Exec-Transaction-Optimization"><span class="nav-text">2. Multi&#x2F;Exec Transaction Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-Techniques"><span class="nav-text">Optimization Techniques</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Lua-Script-Optimization"><span class="nav-text">3. Lua Script Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-Strategies"><span class="nav-text">Optimization Strategies</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Optimizing-Bulk-Commands"><span class="nav-text">4. Optimizing Bulk Commands</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-Techniques-1"><span class="nav-text">Optimization Techniques</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Client-Side-Optimization-Techniques"><span class="nav-text">5. Client-Side Optimization Techniques</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Optimizations"><span class="nav-text">Key Optimizations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Redis-Cluster-Specific-Optimizations"><span class="nav-text">6. Redis Cluster-Specific Optimizations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-Strategies-1"><span class="nav-text">Optimization Strategies</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Monitoring-and-Benchmarking"><span class="nav-text">7. Monitoring and Benchmarking</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-Built-in-Tools"><span class="nav-text">Redis Built-in Tools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Benchmarking-Tools"><span class="nav-text">Benchmarking Tools</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">DNEGEL3125</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        10 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
